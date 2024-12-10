@@ -10,7 +10,8 @@ jobs:
       postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: test
+          POSTGRES_DB: airbnb_clone_ina86_test
+
         image: postgres
         ports:
           - 5432:5432
