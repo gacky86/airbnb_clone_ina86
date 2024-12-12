@@ -40,9 +40,9 @@ RUN gem install bundler && bundle install
 COPY . /app
 
 # Add a script to be executed every time the container starts.
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 # Expose the port the app runs on
 EXPOSE 3000
 
