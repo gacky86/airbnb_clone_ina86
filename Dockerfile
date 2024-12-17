@@ -34,8 +34,7 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 
 # Install Gems dependencies
-RUN gem install bundler && bundle install
-
+RUN gem install bundler -v "2.5.14" && bundle install
 # Copy the application code
 COPY . /app
 

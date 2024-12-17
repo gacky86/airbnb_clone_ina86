@@ -119,6 +119,8 @@ GEM
     ffi (1.17.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -280,6 +282,9 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.0)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -322,12 +327,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  autoprefixer-rails
   bootsnap
   bootstrap
   debug
   devise
   factory_bot_rails
   faker
+  font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -339,6 +346,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sassc-rails
+  simple_form
   sprockets-rails
   stimulus-rails
   turbo-rails
