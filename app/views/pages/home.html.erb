@@ -1,2 +1,7 @@
-<h1>hello, this is home page</h1>
-<li><%= current_user %></li>
+<ul>
+  <% @houses.each do |house| %>
+    <li>
+      <%= render "houses/house_card", house: house %>
+    </li>
+  <% end %>
+</ul>
