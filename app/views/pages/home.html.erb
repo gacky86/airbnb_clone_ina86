@@ -1,7 +1,5 @@
-<ul>
+<div class="house-cards-container">
   <% @houses.each do |house| %>
-    <li>
-      <%= render "houses/house_card", house: house %>
-    </li>
+    <%= render "houses/house_card", house: house %>
   <% end %>
-</ul>
+</div>
