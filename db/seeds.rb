@@ -7,7 +7,19 @@ House.destroy_all
 User.destroy_all
 
 # define category
-CATEGORY = ["well-designed", "iconic", "beach front", "cave", "off-grid", "excellent view", "log house", "mansion", "castle", "pool"]
+CATEGORY = ["house", "apartment", "barn", "B&B", "boat, ship", "log house", "camping car", "cave", "castle"]
+FEATURES = ["pool", "open-air bath", "patio", "BBQ grill", "outdoor dining", "campfire",
+  "billiards", "stove", "piano", "exercise equipments", "lakeside", "beachside", "skiing",
+  "shower", "Wi-Fi", "tv", "full kitchen", "laundry", "free parking space", "paid parking space", "AC", "working space"]
+
+image_paths = [
+  'app/assets/images/test_images/house/house.jpg',
+  'app/assets/images/test_images/house/bathroom.jpg',
+  'app/assets/images/test_images/house/bed.jpg',
+  'app/assets/images/test_images/house/livingroom.jpg',
+  'app/assets/images/test_images/house/parking.jpg'
+]
+
 
 # 2. Create the instances 🏗️
 puts "Creating 10 Users and houses..."
@@ -30,17 +42,33 @@ puts "Creating 10 Users and houses..."
   city = Faker::Address.city
   house = House.new(
     title: "A house in #{city}",
+    zip_code: 12345,
+    street: "example street",
     country: country,
     city: city,
-    category: CATEGORY.sample(3),
+    categories: CATEGORY.sample(3),
+    guests_number: rand(10),
+    beds_number: rand(10),
+    bathroom_number: rand(5),
+    features: FEATURES.sample(10),
+    min_accom_days: rand(7),
+    checkin_time: "16:00",
+    checkout_time: "11:00",
+    pets: true,
+    smoking: false,
+    party: true,
+    other_rule: "nothing special",
     description: "Calm house located in rural area in #{city} city",
+    accom_fee: rand(1_000_000),
     user: user
   )
-  house.photos.attach(
-    io: File.open(Rails.root.join('app/assets/images/test_images/house/olivier-chatel-fC5li9OSGME-unsplash.jpg')),
-    filename: 'olivier-chatel-fC5li9OSGME-unsplash.jpg',
-    content_type: 'image/jpeg'
-  )
+  image_paths.each do |image_path|
+    house.photos.attach(
+      io: File.open(Rails.root.join(image_path)),
+      filename: File.basename(image_path),
+      content_type: 'image/jpeg'
+    )
+  end
   house.save
 end
 

@@ -5,8 +5,8 @@
         <%= image_tag house.photos.first %>
       </div>
       <div class="house-description">
-        <p class="house-title"><%= house.city %> <%= house.country %></p>
-        <p class="accom-fee"><span class="fee">¥ 55,555</span>/night</p>
+        <p class="house-title"><%= house.city %>, <%= house.country %></p>
+        <p class="accom-fee"><span class="fee">¥ <%= house.accom_fee.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,') %></span>/night</p>
 
       </div>
     </div>
