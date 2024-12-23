@@ -1,4 +1,40 @@
-<%= @house %>
+<div class="house-show-container">
+  <div class="house-title"><%= @house.title %></div>
+  <div class="house-show-img">
+    <%= image_tag @house.photos[0], class:"main-img" %>
+    <%= image_tag @house.photos[1], class:"sub-img" %>
+    <%= image_tag @house.photos[2], class:"sub-img" %>
+    <%= image_tag @house.photos[3], class:"sub-img" %>
+    <%= image_tag @house.photos[4], class:"sub-img" %>
+  </div>
+  <div class="house-second-title">
+    <p><%= @house.categories.first.capitalize %> in <%= @house.city %>, <%= @house.country %></p>
+  </div>
+  <div class="house-capaciry"><p>
+    <%= @house.guests_number %>guest<% if @house.guests_number %>s<% end %> ·
+    <%= @house.beds_number %>bed<% if @house.beds_number %>s<% end %> ·
+    <%= @house.bathroom_number %>bath<% if @house.bathroom_number %>s<% end %>
+  </p></div>
+  <div class="house-host"><%= @house.user.first_name %></div>
+  <div class="house-details"><%= @house.description %></div>
+  <div class="bedroom-info">
+    <h3>Where you'll sleep</h3>
+  </div>
+  <div class="equipments">
+    <h3>What this place offers</h3>
+    <% @house.features.each do |equipment| %>
+      <%= equipment %>
+    <% end %>
+  </div>
+  <div class="calender"></div>
+  <div class="review"></div>
+  <div class="location"></div>
+  <div class="host-details"></div>
+  <div class="other-info"></div>
+
+
+</div>
+
 <%# header title %>
 <%# images %>
 <%# descriptions %>

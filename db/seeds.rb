@@ -46,7 +46,7 @@ puts "Creating 10 Users and houses..."
     street: "example street",
     country: country,
     city: city,
-    categories: CATEGORY.sample(3),
+    categories: CATEGORY.sample(1),
     guests_number: rand(10),
     beds_number: rand(10),
     bathroom_number: rand(5),
