@@ -3,7 +3,9 @@
     <%= link_to home_path, class: "navbar-brand" do %>
       <%= image_tag "test_images/logo/Ryubnb.jpg" %>
     <% end %>
-
+    <div class="search-box">
+      <%= render "shared/search_box" %>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>

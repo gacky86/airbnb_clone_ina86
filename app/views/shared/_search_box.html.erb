@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= simple_form_for :search, url: home_path, method: :get, class: "d-flex" do |f| %>
+      <%= f.input :country,
+            as: :string %>
+      <%= f.input :start_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+      <%= f.input :end_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+      <%= f.button :submit, "Search" %>
+    <% end %>
+
+  </div>
+</div>
