@@ -1,4 +1,7 @@
 <div class="house-cards-container">
+  <% @requests.each do |request| %>
+    <p><%= request.house.city %>, <%= request.house.country %>, <%= request.start_date %>, <%= request.end_date %></p>
+  <% end %>
   <% @houses.each do |house| %>
     <%= render "houses/house_card", house: house %>
   <% end %>
