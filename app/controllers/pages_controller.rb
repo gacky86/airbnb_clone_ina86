@@ -4,27 +4,60 @@ class PagesController < ApplicationController
   def home
     @houses = House.all
     @requests = Request.where("status = ? OR status = ?", "PENDING", "ACCEPTED")
-    # puts params
-    # houseからrequestにアクセスして、pending/accepted のstatusを持つリクエストを持つhouse以外を抽出する
-    if params[:search][:start_date].present?
+    if params[:search].present?
+      # search by country or region
+      @houses = @houses.where("country ILIKE ?", params[:search][:country]) if params[:search][:country].present?
 
-      start_date_query = Date.parse(params[:search][:start_date])
-      end_date_query = Date.parse(params[:search][:end_date])
+      # search by iterinery date
+      start_date_query = params[:search][:start_date]
+      end_date_query = params[:search][:end_date]
 
-      @houses.each do |house_a|
-        requests = house_a.requests
-        next if requests.empty?
+      if start_date_query || end_date_query
+        start_date_query_parse, end_date_query_parse = retrieve_date_query(start_date_query, end_date_query)
+        # コアの動作：houseの除外
+        # 除外条件：paramsの日程と重なるreqを持っていること
+        @houses.each do |house_each|
+          requests = house_each.requests
+          next if requests.empty?
 
-        requests.each do |request|
-          unless end_date_query < request.start_date || request.end_date < start_date_query
-            @houses = @houses.reject { |house| house == house_a }
-            break
+          requests.each do |request|
+            next if request.status == "REJECTED"
+
+            if request.start_date <= end_date_query_parse && start_date_query_parse <= request.end_date
+              @houses = @houses.reject { |house| house == house_each }
+              break
+            end
           end
         end
       end
-
-      @houses = @houses.where("country ILIKE ?", params[:search][:country])
     end
+  end
+
+  private
+
+  def retrieve_date_query(start_date_query, end_date_query)
+    if start_date_query != "" && end_date_query != ""
+      parse
+      start_date_query_parse = retrieve_start_date_query(start_date_query)
+      end_date_query_parse = retrieve_end_date_query(end_date_query)
+
+    elsif start_date_query != "" && end_date_query == ""
+      start_date_query_parse = retrieve_start_date_query(start_date_query)
+      end_date_query_parse = start_date_query_parse
+
+    elsif start_date_query == "" && end_date_query != ""
+      end_date_query_parse = retrieve_end_date_query(end_date_query)
+      start_date_query_parse = end_date_query_parse
+    end
+    return start_date_query_parse, end_date_query_parse
+  end
+
+  def retrieve_start_date_query(start_date_query)
+    Date.parse(start_date_query)
+  end
+
+  def retrieve_end_date_query(end_date_query)
+    Date.parse(end_date_query)
   end
 
 end
