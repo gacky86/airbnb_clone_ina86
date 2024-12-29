@@ -7,6 +7,10 @@
     <%= image_tag @house.photos[3], class:"sub-img" %>
     <%= image_tag @house.photos[4], class:"sub-img" %>
   </div>
+  <%# bookmark button %>
+  <div class="bookmark-button">
+    <%= render "bookmarks/bookmark_button", house: @house %>
+  </div>
   <div class="house-show-grid">
     <div class="house-show-grid-left">
       <div class="house-second-title">
