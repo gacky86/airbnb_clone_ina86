@@ -1,0 +1,9 @@
+<% if current_user.bookmark?(house) %>
+  <!-- ブックマークされている場合は削除ボタンを表示 -->
+  <%= button_to "Unbookmark", bookmark_path(house), method: :delete, class: "btn btn-danger" %>
+<% else %>
+  <!-- ブックマークされていない場合は作成ボタンを表示 -->
+  <%= button_to "Bookmark", bookmarks_path(house_id: house.id), method: :post, class: "btn btn-primary" %>
+<% end %>
+    <%# <i class="fa-solid fa-bookmark"></i>
+    <i class="fa-regular fa-bookmark"></i> %>

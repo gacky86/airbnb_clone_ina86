@@ -3,3 +3,8 @@
   <%= f.input :end_date %>
   <%= f.submit %>
 <% end %>
+<% if @house.requests %>
+  <% @house.requests.each do |request| %>
+    <%= request %>
+  <% end %>
+<% end %>
