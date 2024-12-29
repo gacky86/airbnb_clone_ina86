@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @houses = House.all
-    @requests = Request.where("status = ? OR status = ?", "PENDING", "ACCEPTED")
     if params[:search].present?
       # search by country or region
       @houses = @houses.where("country ILIKE ?", params[:search][:country]) if params[:search][:country].present?
@@ -11,7 +10,6 @@ class PagesController < ApplicationController
       # search by iterinery date
       start_date_query = params[:search][:start_date]
       end_date_query = params[:search][:end_date]
-
       if start_date_query || end_date_query
         start_date_query_parse, end_date_query_parse = retrieve_date_query(start_date_query, end_date_query)
         # コアの動作：houseの除外
@@ -30,6 +28,9 @@ class PagesController < ApplicationController
           end
         end
       end
+
+      # bookmark
+      @bookmarks = Bookmark.where("user=?", current_user)
     end
   end
 

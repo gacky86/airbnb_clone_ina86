@@ -2,13 +2,23 @@
   <%= link_to house_path(house) do %>
     <div class="house-card">
       <div class="house-img">
+        <%# house first image %>
         <%= image_tag house.photos.first %>
       </div>
       <div class="house-description">
         <p class="house-title"><%= house.city %>, <%= house.country %></p>
         <p class="accom-fee"><span class="fee">¥ <%= house.accom_fee.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,') %></span>/night</p>
-
       </div>
     </div>
   <% end %>
+  <%# bookmark %>
+  <% if current_user.bookmark?(house) %>
+    <!-- ブックマークされている場合は削除ボタンを表示 -->
+    <%= button_to "Unbookmark", bookmark_path(house), method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <!-- ブックマークされていない場合は作成ボタンを表示 -->
+    <%= button_to "Bookmark", bookmarks_path(house_id: house.id), method: :post, class: "btn btn-primary" %>
+  <% end %>
+      <%# <i class="fa-solid fa-bookmark"></i>
+      <i class="fa-regular fa-bookmark"></i> %>
 </div>
