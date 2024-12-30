@@ -50,6 +50,7 @@ gem "devise"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form"
 gem "autoprefixer-rails"
+gem 'country_select', '~> 8.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
