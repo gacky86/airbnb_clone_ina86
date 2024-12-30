@@ -1,8 +1,14 @@
-<% if houses %>
+<% if @houses %>
   <% @houses.each do |house| %>
-    <%= house %>
+    <%= render "houses/house_card", house: house %>
+    <%# editボタン %>
+    <%= link_to "Edit your house", edit_house_path(house), class: "nav-link" %>
+
+    <%# deleteボタン %>
+    <%= link_to "Delete",
+      house_path(house),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
   <% end %>
-<% else %>
-  <p>create your house</p>
-  <%# link to houes new page %>
 <% end %>
+<%= link_to "Create your house", new_house_path, class: "nav-link" %>

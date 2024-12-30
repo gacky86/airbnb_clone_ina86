@@ -1,0 +1,8 @@
+<%= simple_form_for(@house) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :city %>
+  <%= f.country_select :country %>
+  <%= f.input :description %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.submit %>
+<% end %>
