@@ -33,13 +33,15 @@ class HousesController < ApplicationController
 
   def update
     @house = House.find(params[:id])
-    @house = current_user.house.build(house_params)
-    if @house.save
-      redirect_to home_path
-    else
-      puts @house.errors.full_messages
-      render :new, status: :unprocessable_entity
-    end
+    @house.update(house_params)
+    redirect_to houses_path
+  end
+
+  def destroy
+    # raise
+    @house = House.find(params[:id])
+    @house.destroy
+    redirect_to houses_path, status: :see_other, notice: "House was successfully deleted."
   end
 
   private
