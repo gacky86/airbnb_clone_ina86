@@ -1,0 +1,10 @@
+<% @requests.each do |request| %>
+  <%= request %>
+  <%# status %>
+  <%= request.status %>
+  <%# cancel button %>
+  <%= link_to "Cancel",
+      request_path(request),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+<% end %>

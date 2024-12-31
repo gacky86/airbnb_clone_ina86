@@ -1,0 +1,23 @@
+<% @houses.each do |house| %>
+  <%= house.title %>
+  <% house.requests.each do |request| %>
+    <% if request %>
+      <p>
+      <%= request.status %>
+      </p>
+      <p>
+      <%= request.user.first_name %>
+      </p>
+      <p>change status</p>
+      <%= simple_form_for request do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: 'ACCEPTED'} %>
+        <%= f.submit 'Accept', class: 'btn btn-info' %>
+      <% end %>
+      <%= simple_form_for request do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: 'REJECTED'} %>
+        <%= f.submit 'Reject', class: 'btn btn-info' %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>

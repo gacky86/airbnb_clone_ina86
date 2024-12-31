@@ -11,6 +11,7 @@ CATEGORY = ["house", "apartment", "barn", "B&B", "boat, ship", "log house", "cam
 FEATURES = ["pool", "open-air bath", "patio", "BBQ grill", "outdoor dining", "campfire",
   "billiards", "stove", "piano", "exercise equipments", "lakeside", "beachside", "skiing",
   "shower", "Wi-Fi", "tv", "full kitchen", "laundry", "free parking space", "paid parking space", "AC", "working space"]
+COUNTRY = ["JA", "EN", "DE", "FR", "IT"]
 
 image_paths = [
   'app/assets/images/test_images/house/house.jpg',
@@ -38,13 +39,14 @@ puts "Creating 10 Users and houses..."
     content_type: 'image/jpeg'
   )
   user.save
-  country = Faker::Address.country
+  # country = Faker::Address.country
+
   city = Faker::Address.city
   house = House.new(
     title: "A house in #{city}",
     zip_code: 12345,
     street: "example street",
-    country: country,
+    country: COUNTRY.sample,
     city: city,
     categories: CATEGORY.sample(1),
     guests_number: rand(10),
