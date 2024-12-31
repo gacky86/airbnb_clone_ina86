@@ -34,6 +34,12 @@ class PagesController < ApplicationController
     end
   end
 
+  def hosting
+    @houses = current_user.houses
+    # @requests = @houses.requests
+
+  end
+
   private
 
   def retrieve_date_query(start_date_query, end_date_query)

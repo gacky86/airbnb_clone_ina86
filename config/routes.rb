@@ -5,12 +5,12 @@ Rails.application.routes.draw do
 
   resources :houses do
     resources :requests, only: :create
-    # collection do
-    #   get :bookmarks
-    # end
   end
 
   resources :bookmarks, only: [:create, :destroy]
+  resources :requests, only: [:index, :destroy, :update]
+
+  get "hosting", to: "pages#hosting", as: :hosting
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
